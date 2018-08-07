@@ -1,16 +1,21 @@
-/*adding jquery functionality*/
-
-
-
 /*
  * Create a list that holds all of your cards
  * Grab all the cards
  */
 const allCards = document.querySelectorAll('.card')
 
-/*the list AllCards, runs through a loop, on click, card opens*/
 
 
+
+/*this takes all the cards and prvents them from showing*/
+function closeCards(){
+for (let singleCard of allCards) {
+    singleCard.classList.remove('open');
+    }
+}
+
+
+/*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)*/
 for (let singleCard of allCards) {
     singleCard.addEventListener('click', () => {
         singleCard.classList.toggle('show');
@@ -42,19 +47,6 @@ function shuffle(array) {
     return array;
 }
 
-
-/*When card is click, this function passes, myFunction is just a placeholder for now*/
-
-/*let clicked= document.getElementByTagName('LI');
-clicked.addEventListener("click", whenClicked);
-*/
-
-
-/*This function flips the card over */
-function whenClicked()
-{
-    document.li.classList.add('open show');
-};
 
 
 /* This is Udacity's instructions
