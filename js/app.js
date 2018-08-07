@@ -13,7 +13,8 @@ const allCards = document.querySelectorAll('.card')
 
 for (let singleCard of allCards) {
     singleCard.addEventListener('click', () => {
-        card.classList.add('open', 'show');
+        singleCard.classList.toggle('show');
+        singleCard.classList.toggle('open');
         
     });
 }
