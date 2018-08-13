@@ -4,15 +4,23 @@
  */
 const allCards = document.querySelectorAll('.card')
 
+/*an array that was created for matched cards*/
+var matchCards = [];
 
+/*when all the cards are matchCards*/
+if (matchCards.length === 16) {
+    alert('You matched all the cards!');
+}
 
+/*an array that was created for open cards*/
+var openCards = []; 
 
 /*this takes all the cards and prvents them from showing*/
-function closeCards(){
-for (let singleCard of allCards) {
-    singleCard.classList.remove('open');
-    }
-}
+/*function closeCards(){*/
+/*for (let singleCard of allCards) {*/
+/*    singleCard.classList.remove('open');*/
+/*    }*/
+/*}*/
 
 
 /*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)*/
@@ -20,9 +28,23 @@ for (let singleCard of allCards) {
     singleCard.addEventListener('click', () => {
         singleCard.classList.toggle('show');
         singleCard.classList.toggle('open');
-        
+  /*      singleCard.classList.add('unclickable');  - makes the card unclickable */
+
     });
 }
+
+
+
+
+
+
+
+/*if two cards are open/show, then run match function*/
+
+/*push open cards in an array (openCards)*/
+function addCards (singleCard) {
+    openCards.push(singleCard);
+} 
 
 
 /*
