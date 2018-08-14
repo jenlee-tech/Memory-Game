@@ -7,6 +7,8 @@ const allCards = document.querySelectorAll('.card')
 /*an array that was created for matched cards*/
 var matchCards = [];
 
+/*testing the new git configurations*/
+
 /*when all the cards are matchCards*/
 if (matchCards.length === 16) {
     alert('You matched all the cards!');
