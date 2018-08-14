@@ -9,6 +9,10 @@ var matchCards = [];
 
 /*testing the new git configurations*/
 
+/*when all the cards are matchCards*/
+if (matchCards.length === 16) {
+    alert('You matched all the cards!');
+}
 
 /*an array that was created for open cards*/
 var openCards = []; 
@@ -22,36 +26,18 @@ var openCards = [];
 
 
 /*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)*/
-/*for (let singleCard of allCards) {
+for (let singleCard of allCards) {
     singleCard.addEventListener('click', () => {
-        singleCard.classList.add('show');
-        singleCard.classList.add('open');
-        
-    })
-}*/
+        singleCard.classList.toggle('show');
+        singleCard.classList.toggle('open');
+  /*      singleCard.classList.add('unclickable');  - makes the card unclickable */
 
-
-
-    allCards.addEventListener("click", function()
-    {
-        card.classList.add("show", "open")
     });
-
-
-
-
-
-
-
-
-
-
-
-
-/*when all the cards are matchCards*/
-if (matchCards.length === 16) {
-    alert('You matched all the cards!');
 }
+
+
+
+
 
 
 
