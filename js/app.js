@@ -7,37 +7,55 @@ const allCards = document.querySelectorAll('.card')
 /*an array that was created for matched cards*/
 var matchCards = [];
 
-/*testing the new git configurations*/
-
-/*when all the cards are matchCards*/
-if (matchCards.length === 16) {
-    alert('You matched all the cards!');
-}
-
 /*an array that was created for open cards*/
-var openCards = []; 
-
-/*this takes all the cards and prvents them from showing*/
-/*function closeCards(){*/
-/*for (let singleCard of allCards) {*/
-/*    singleCard.classList.remove('open');*/
-/*    }*/
-/*}*/
+let openCards = []; 
 
 
-/*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)*/
+
+/*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)
 for (let singleCard of allCards) {
     singleCard.addEventListener('click', () => {
         singleCard.classList.toggle('show');
         singleCard.classList.toggle('open');
-  /*      singleCard.classList.add('unclickable');  - makes the card unclickable */
-
     });
+}
+*/
+
+
+let deck = document.querySelector('.deck');
+
+deck.addEventListener('click', event => {
+    const onClick = event.target;
+    if (onClick.classList.contains('card')) {
+      flipCard(onClick);
+      openCardGroup(onClick);
+    }
+});
+
+/*this function flips the cards*/
+function flipCard(onClick) {
+    onClick.classList.toggle('open');
+    onClick.classList.toggle('show');
 }
 
 
 
 
+/*this function pushes the open card into an array*/
+function openCardGroup(onClick) {
+    openCards.push(onClick);
+    console.log(openCards);
+}
+
+
+
+
+/*this function flips card back
+function flipCardBack(onClick) {
+    onClick.classList.remove('open');
+    onClick.classList.remove('show');
+}
+*/
 
 
 
@@ -70,6 +88,12 @@ function shuffle(array) {
 
     return array;
 }
+
+/*when all the cards are matchCards*/
+if (matchCards.length === 16) {
+    alert('You matched all the cards!');
+}
+
 
 
 
