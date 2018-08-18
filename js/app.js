@@ -10,6 +10,9 @@ var matchCards = [];
 /*an array that was created for open cards*/
 let openCards = []; 
 
+let firstCard;
+let secondCard;
+
 
 
 /*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)
@@ -29,8 +32,50 @@ deck.addEventListener('click', event => {
     if (onClick.classList.contains('card')) {
       flipCard(onClick);
       openCardGroup(onClick);
+        if (openCards.length === 2) {
+            console.log("I have two cards")
+            checkMatch();
+        }
     }
 });
+
+/*this function pushes the open card into an array*/
+function openCardGroup(onClick) {
+    openCards.push(onClick);
+    console.log(openCards);
+}
+
+/*if two cards are open/show, then test to see if they match*, if they match freeze cards and then 
+push them in matchCards array*/
+
+function checkMatch () {
+    firstCard = openCards[0];
+    secondCard = openCards[1];
+    if (firstCard.firstElementChild.className === secondCard.firstElementChild.className)
+    
+    {
+    
+    firstCard.classList.add('unclickable');
+    secondCard.classList.add('unclickable');
+    console.log("dude, I match!");
+    matchCards.push(firstCard, secondCard);
+    }
+    else 
+    {
+    console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
+    array */
+    setTimeout(function flipCardBack () 
+        {
+            firstCard.classList.remove('open', 'show');
+            secondCard.classList.remove('open', 'show');
+        }
+        , 3000);
+        openCards=[];
+    }
+}
+
+/*this function flips the card back - face down*/
+
 
 /*this function flips the cards*/
 function flipCard(onClick) {
@@ -41,25 +86,21 @@ function flipCard(onClick) {
 
 
 
-/*this function pushes the open card into an array*/
-function openCardGroup(onClick) {
-    openCards.push(onClick);
-    console.log(openCards);
-}
+
 
 
 
 
 /*this function flips card back
-function flipCardBack(onClick) {
-    onClick.classList.remove('open');
-    onClick.classList.remove('show');
+function flipCardBack(firstCard, secondCard) {
+    
 }
 */
 
 
 
-/*if two cards are open/show, then run match function*/
+
+
 
 /*push open cards in an array (openCards)*/
 function addCards (singleCard) {
