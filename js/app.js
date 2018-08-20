@@ -52,30 +52,32 @@ function checkMatch () {
     firstCard = openCards[0];
     secondCard = openCards[1];
     if (firstCard.firstElementChild.className === secondCard.firstElementChild.className)
-    
-    {
-    
-    firstCard.classList.add('unclickable');
-    secondCard.classList.add('unclickable');
-    console.log("dude, I match!");
-    matchCards.push(firstCard, secondCard);
+            {
+            freezeCards();
+            console.log("dude, I match!");
+            matchCards.push(firstCard, secondCard);
+            openCards=[];
     }
     else 
     {
-    console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
-    array */
-    setTimeout(function flipCardBack () 
-        {
-            firstCard.classList.remove('open', 'show');
-            secondCard.classList.remove('open', 'show');
-        }
-        , 3000);
+        console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
+        array */
+        setTimeout(flipCardBack, 3000);
         openCards=[];
     }
 }
 
 /*this function flips the card back - face down*/
+function flipCardBack(){
+    firstCard.classList.remove('open', 'show');
+    secondCard.classList.remove('open', 'show');
+};
 
+/*this freeze cards*/
+function freezeCards(){
+firstCard.classList.add('unclickable');
+secondCard.classList.add('unclickable');
+};
 
 /*this function flips the cards*/
 function flipCard(onClick) {
