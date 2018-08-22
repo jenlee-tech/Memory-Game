@@ -1,8 +1,39 @@
+/*referencing the deck class*/
+let deck = document.querySelector('.deck');
+
+let symbols = ["fa fa-diamond",
+"fa fa-paper-plane-o",
+"fa fa-anchor", 
+"fa fa-bolt",
+"fa fa-cube",
+"fa fa-anchor",
+"fa fa-leaf",
+"fa fa-bicycle",
+"fa fa-diamond",
+"fa fa-bomb",
+"fa fa-leaf",
+"fa fa-bomb",
+"fa fa-bolt",
+"fa fa-bicycle",
+"fa fa-paper-plane-o",
+"fa fa-cube"];
+
+symbols.forEach(function(element) {
+    const card = document.createElement("li");
+    card.classList.add('card');
+    let iclass='<i class ="' + element + '"></i>';
+    card.innerHTML=iclass;
+    console.log(element);
+    deck.appendChild(card);
+});
+
 /*
  * Create a list that holds all of your cards
  * Grab all the cards
  */
 const allCards = document.querySelectorAll('.card')
+
+
 
 /*an array that was created for matched cards*/
 var matchCards = [];
@@ -25,7 +56,7 @@ for (let singleCard of allCards) {
 */
 
 
-let deck = document.querySelector('.deck');
+
 
 deck.addEventListener('click', event => {
     const onClick = event.target;
@@ -87,6 +118,12 @@ function flipCard(onClick) {
 
 
 
+function shuffleDeck() {
+    const mixedCards = document.querySelectorAll('.deck li');
+    console.log(mixedCards);
+    shuffle(mixedCards)
+
+}
 
 
 
@@ -118,7 +155,7 @@ function addCards (singleCard) {
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+function shuffle(mixedCards) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
