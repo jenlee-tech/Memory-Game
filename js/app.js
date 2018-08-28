@@ -18,15 +18,6 @@ let symbols = ["fa fa-diamond",
 "fa fa-paper-plane-o",
 "fa fa-cube"];
 
-symbols.forEach(function(element) {
-    const card = document.createElement("li");
-    card.classList.add('card');
-    let iclass='<i class ="' + element + '"></i>';
-    card.innerHTML=iclass;
-    console.log(element);
-    deck.appendChild(card);
-});
-
 /*
  * Create a list that holds all of your cards
  * Grab all the cards
@@ -155,7 +146,7 @@ function addCards (singleCard) {
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(mixedCards) {
+function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -172,6 +163,20 @@ function shuffle(mixedCards) {
 /*when all the cards are matchCards*/
 if (matchCards.length === 16) {
     alert('You matched all the cards!');
+}
+
+/*shuffling the cards and then creating the board*/
+function startGame(){
+    shuffle(symbols);
+    symbols.forEach(function(element) {
+    const card = document.createElement("li");
+    card.classList.add('card');
+    let iclass='<i class ="' + element + '"></i>';
+    card.innerHTML=iclass;
+    console.log(element);
+    deck.appendChild(card);
+    });
+ 
 }
 
 
