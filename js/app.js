@@ -24,6 +24,21 @@ let symbols = ["fa fa-diamond",
  */
 const allCards = document.querySelectorAll('.card')
 
+/*shuffling the cards and then creating the board*/
+function startGame(){
+    shuffle(symbols);
+}
+
+symbols.forEach(function(element) {
+    let card = document.createElement("li");
+    card.classList.add('card');
+    let iclass='<i class =' + '"' + element + '"'+ '></i>';
+    card.innerHTML=iclass;
+    console.log(element);
+    console.log(card);
+    deck.appendChild(card);
+    });
+
 
 
 /*an array that was created for matched cards*/
@@ -57,6 +72,7 @@ deck.addEventListener('click', event => {
         if (openCards.length === 2) {
             console.log("I have two cards")
             checkMatch();
+            checkMoves();
         }
     }
 });
@@ -116,8 +132,11 @@ function shuffleDeck() {
 
 }
 
-
-
+/*this function increments moves each time it runs*/
+let moves = 0;
+function checkMoves(){
+moves++;
+}
 
 
 
@@ -165,19 +184,7 @@ if (matchCards.length === 16) {
     alert('You matched all the cards!');
 }
 
-/*shuffling the cards and then creating the board*/
-function startGame(){
-    shuffle(symbols);
-    symbols.forEach(function(element) {
-    const card = document.createElement("li");
-    card.classList.add('card');
-    let iclass='<i class ="' + element + '"></i>';
-    card.innerHTML=iclass;
-    console.log(element);
-    deck.appendChild(card);
-    });
- 
-}
+
 
 
 
