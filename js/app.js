@@ -24,12 +24,18 @@ let symbols = ["fa fa-diamond",
  */
 const allCards = document.querySelectorAll('.card')
 
-/*shuffling the cards and then creating the board*/
-function startGame(){
-    shuffle(symbols);
-}
 
-symbols.forEach(function(element) {
+
+/*shuffling the cards
+function startGame(){*/
+let newDeck = shuffle(symbols);
+
+/*location.reload();
+  }*/
+
+
+/*creating the board*/
+newDeck.forEach(function(element) {
     let card = document.createElement("li");
     card.classList.add('card');
     let iclass='<i class =' + '"' + element + '"'+ '></i>';
@@ -38,6 +44,7 @@ symbols.forEach(function(element) {
     console.log(card);
     deck.appendChild(card);
     });
+
 
 
 
@@ -61,7 +68,10 @@ for (let singleCard of allCards) {
 }
 */
 
-
+/*
+const restart = document.querySelector('.restart');
+restart.addEventListener('click', startGame);
+*/
 
 
 deck.addEventListener('click', event => {
@@ -100,7 +110,7 @@ function checkMatch () {
     {
         console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
         array */
-        setTimeout(flipCardBack, 3000);
+        setTimeout(flipCardBack, 2000);
         openCards=[];
     }
 }
@@ -136,6 +146,8 @@ function shuffleDeck() {
 let moves = 0;
 function checkMoves(){
 moves++;
+const movesNumber = document.querySelector('.moves');
+movesNumber.innerHTML = moves;
 }
 
 
