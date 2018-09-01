@@ -26,12 +26,13 @@ const allCards = document.querySelectorAll('.card')
 
 
 
-/*shuffling the cards
-function startGame(){*/
+/*shuffling the cards*/
 let newDeck = shuffle(symbols);
 
-/*location.reload();
-  }*/
+/*restarting the game*/
+function startGame(){
+document.location.reload()
+  }
 
 
 /*creating the board*/
@@ -68,10 +69,10 @@ for (let singleCard of allCards) {
 }
 */
 
-/*
-const restart = document.querySelector('.restart');
-restart.addEventListener('click', startGame);
-*/
+
+const reload = document.querySelector('.restart');
+reload.addEventListener('click', startGame);
+
 
 
 deck.addEventListener('click', event => {
