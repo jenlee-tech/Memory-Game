@@ -84,6 +84,7 @@ deck.addEventListener('click', event => {
             console.log("I have two cards")
             checkMatch();
             checkMoves();
+            starBoard();
         }
     }
 });
@@ -111,7 +112,7 @@ function checkMatch () {
     {
         console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
         array */
-        setTimeout(flipCardBack, 2000);
+        setTimeout(flipCardBack, 1500);
         openCards=[];
     }
 }
@@ -134,6 +135,30 @@ function flipCard(onClick) {
     onClick.classList.toggle('show');
 }
 
+let starSymbol = '<li><i class="fa fa-star"></i></li>';
+let starScore = document.querySelector('.stars');
+starScore.innerHTML
+
+
+function starBoard () {
+switch(true) {
+    case moves <= 10:
+    starScore.innerHTML= starSymbol + starSymbol + starSymbol;
+    
+    break;
+
+    case (moves > 10  && moves < 30):
+    starScore.innerHTML=starSymbol + starSymbol;
+   
+    break;
+
+    case (moves > 30 && moves < 40):
+    starScore.innerHTML=starSymbol;
+    break;
+
+    
+}}
+
 
 
 function shuffleDeck() {
@@ -144,10 +169,11 @@ function shuffleDeck() {
 }
 
 /*this function increments moves each time it runs*/
+
 let moves = 0;
+const movesNumber = document.querySelector('.moves');
 function checkMoves(){
 moves++;
-const movesNumber = document.querySelector('.moves');
 movesNumber.innerHTML = moves;
 }
 
