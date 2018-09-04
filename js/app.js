@@ -18,6 +18,8 @@ let symbols = ["fa fa-diamond",
 "fa fa-paper-plane-o",
 "fa fa-cube"];
 
+
+let time = 0;
 /*
  * Create a list that holds all of your cards
  * Grab all the cards
@@ -32,6 +34,7 @@ let newDeck = shuffle(symbols);
 /*restarting the game*/
 function startGame(){
 document.location.reload()
+let startTime = new Date().getTime();
   }
 
 
@@ -73,7 +76,7 @@ for (let singleCard of allCards) {
 const reload = document.querySelector('.restart');
 reload.addEventListener('click', startGame);
 
-
+var startTime = new Date().getTime();
 
 deck.addEventListener('click', event => {
     const onClick = event.target;
@@ -134,6 +137,17 @@ function flipCard(onClick) {
     onClick.classList.toggle('open');
     onClick.classList.toggle('show');
 }
+
+function startTime(){
+    let timeStamp = setInterval(() => {
+        time++;
+        console.log(time);
+    }, 1000);
+}
+/*
+function showTime(){
+    const 
+}*/
 
 let starSymbol = '<li><i class="fa fa-star"></i></li>';
 let starScore = document.querySelector('.stars');
@@ -221,7 +235,13 @@ function shuffle(array) {
 /*when all the cards are matchCards*/
 if (matchCards.length === 16) {
     alert('You matched all the cards!');
+    let endTime = new Date().getTime();
 }
+
+
+/*more info for modal*/
+let timer = endTime - startTime;
+
 
 
 
