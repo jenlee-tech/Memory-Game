@@ -138,7 +138,7 @@ function flipCard(onClick) {
     onClick.classList.toggle('show');
 }
 
-function startTime(){
+function initTime(){
     let timeStamp = setInterval(() => {
         time++;
         console.log(time);
