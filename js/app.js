@@ -18,8 +18,12 @@ let symbols = ["fa fa-diamond",
 "fa fa-paper-plane-o",
 "fa fa-cube"];
 
-
+let clockOff = true;
 let time = 0;
+/*
+let endTime = new Date().getTime();
+*/
+let timeStamp;
 /*
  * Create a list that holds all of your cards
  * Grab all the cards
@@ -81,6 +85,10 @@ var startTime = new Date().getTime();
 deck.addEventListener('click', event => {
     const onClick = event.target;
     if (onClick.classList.contains('card')) {
+        if (clockOff) {
+            initTime();
+            clockOff=false;
+        }
       flipCard(onClick);
       openCardGroup(onClick);
         if (openCards.length === 2) {
@@ -139,15 +147,17 @@ function flipCard(onClick) {
 }
 
 function initTime(){
-    let timeStamp = setInterval(() => {
+        timeStamp = setInterval(function(){
         time++;
         console.log(time);
+        showTime();
     }, 1000);
 }
-/*
-function showTime(){
-    const 
-}*/
+
+function endTime(){
+    clearInterval(timeStamp);
+}
+
 
 let starSymbol = '<li><i class="fa fa-star"></i></li>';
 let starScore = document.querySelector('.stars');
@@ -235,13 +245,20 @@ function shuffle(array) {
 /*when all the cards are matchCards*/
 if (matchCards.length === 16) {
     alert('You matched all the cards!');
-    let endTime = new Date().getTime();
+    
 }
 
 
-/*more info for modal*/
+/*more info for modal
 let timer = endTime - startTime;
+*/
 
+/*shows time in HTML*/
+function showTime() {
+const clock = document.querySelector ('.clock');
+console.log(clock);
+clock.innerHTML= " and " + time + " seconds";
+}
 
 
 
