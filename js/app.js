@@ -38,7 +38,7 @@ let newDeck = shuffle(symbols);
 /*restarting the game*/
 function startGame(){
 document.location.reload()
-let startTime = new Date().getTime();
+/*let startTime = new Date().getTime();*/
   }
 
 
@@ -244,7 +244,9 @@ function shuffle(array) {
 
 /*when all the cards are matchCards*/
 if (matchCards.length === 16) {
+    endTime();
     alert('You matched all the cards!');
+
     
 }
 
