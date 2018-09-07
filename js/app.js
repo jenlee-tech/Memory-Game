@@ -262,6 +262,10 @@ console.log(clock);
 clock.innerHTML= " and " + time + " seconds";
 }
 
+const modal = document.getElementById('modal');
+function showModal(){
+    modal.style.display = 'block';
+}
 
 
 
