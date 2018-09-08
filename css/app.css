@@ -107,6 +107,8 @@ h1 {
     display: inline-block;
 }
 
+
+
 .score-panel .restart {
     float: right;
     cursor: pointer;
@@ -164,6 +166,11 @@ h1 {
     align-items: center;
     padding: 1rem;
     border-bottom: 1px solid #17afd4;
+}
+    
+.modal_stars li {
+    list-style: none;
+    display: inline-block;
 }
 
 .modal_buttons {

@@ -65,6 +65,8 @@ let openCards = [];
 let firstCard;
 let secondCard;
 
+let starScore = document.querySelector('.stars');
+
 
 
 /*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)
@@ -160,8 +162,8 @@ function endTime(){
 
 
 let starSymbol = '<li><i class="fa fa-star"></i></li>';
-let starScore = document.querySelector('.stars');
-starScore.innerHTML
+
+
 
 
 function starBoard () {
@@ -183,7 +185,11 @@ switch(true) {
     
 }}
 
-
+function endGame() {
+    endTime();
+    showModal();
+    showModalStats();
+}
 
 function shuffleDeck() {
     const mixedCards = document.querySelectorAll('.deck li');
@@ -265,6 +271,17 @@ clock.innerHTML= " and " + time + " seconds";
 function showModal(){
     document.getElementById("modal").style.display = "initial";
     
+}
+
+/*places the stats on the modal*/
+function showModalStats(){
+const showTimeStat = document.querySelector('.modal_time');
+const showStarStat = document.querySelector('.modal_stars');
+const showMoveStat = document.querySelector('.modal_moves');
+
+showTimeStat.innerHTML="Time = " + time + " seconds";
+showStarStat.innerHTML="Stars = " + starScore.innerHTML;
+showMoveStat.innerHTML="Moves = " + moves;
 }
 
 
