@@ -113,9 +113,9 @@ h1 {
 }
 
 /*Styles for Modal*/
-.modal {
+#modal {
     
-    /*display: none;*/
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -135,7 +135,7 @@ h1 {
     left: 50%;
     /*padding: 20px;*/
     width: 400px;
-    height: 400px;
+    /*height: 400px;*/
     transform: translate(-50%, -70%);
     box-shadow: -11px -7px 28px -3px rgba(0,0,0,0.75);
     /*opacity: .47;*/
