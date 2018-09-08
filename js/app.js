@@ -269,7 +269,7 @@ clock.innerHTML= " and " + time + " seconds";
 }
 
 function showModal(){
-    document.getElementById("modal").style.display = "initial";
+    document.getElementById("modal").style.display = "block";
     
 }
 
@@ -284,7 +284,13 @@ showStarStat.innerHTML="Stars = " + starScore.innerHTML;
 showMoveStat.innerHTML="Moves = " + moves;
 }
 
+/*event listener for exit button*/
+const modalExitBtn = document.querySelector('.closeBtn');
+modalExitBtn.addEventListener('click', hideModal);
 
+function hideModal(){
+    document.getElementById("modal").style.display = "none";
+}
 
 
 

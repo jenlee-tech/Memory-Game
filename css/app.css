@@ -185,3 +185,15 @@ h1 {
     width: 60px;
     height: 30px;
 }
+
+.closeBtn {
+    color: gray;
+    float: right;
+    font-size: 30px;
+
+}
+.closeBtn:hover, .closeBtn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
