@@ -57,12 +57,12 @@ function shuffleCards(){
 newDeck = shuffle(symbols);
 }
 
-/*restarting the game - old versions - testing*/
+/*restarting the game - old versions - testing
 function replayGame(){
     document.location.reload();
     matchCards=[];
     openCards=[];
-}
+}*/
 
 
 /*function that creates the board*/
@@ -92,7 +92,7 @@ for (let singleCard of allCards) {
 
 
 const reload = document.querySelector('.restart');
-reload.addEventListener('click', newReplay);
+reload.addEventListener('click', replayGame);
 
 
 
@@ -192,12 +192,12 @@ switch(true) {
     
     break;
 
-    case (moves > 10  && moves < 30):
+    case (moves > 10  && moves <= 30):
     starScore.innerHTML=starSymbol + starSymbol;
    
     break;
 
-    case (moves > 30 && moves < 40):
+    case (moves > 30):
     starScore.innerHTML=starSymbol;
     break;
 
@@ -307,7 +307,7 @@ function hideModal(){
     document.getElementById("modal").style.display = "none";
 }
 
-/*event listener for replay button old way*/
+
 const modalReplayBtn = document.querySelector('.modal_replay');
 modalReplayBtn.addEventListener('click', replayGame);
 
@@ -315,17 +315,23 @@ modalReplayBtn.addEventListener('click', replayGame);
 
 /*functions that resets the game*/
 
-function newReplay(){
+function replayGame(){
       resetTime();
       resetMoves();
       resetStars();
       deck.innerHTML="";
+      resetArrays();
+      hideModal();
       shuffleCards();
       createBoard();
+
      
 }
 
-
+function resetArrays(){
+matchCards=[];
+openCards=[];
+}
 
 
 function resetTime(){
@@ -342,6 +348,7 @@ function resetMoves(){
 
 function resetStars(){
     stars=0;
+    starScore.innerHTML= starSymbol + starSymbol + starSymbol;
     const starList = document.querySelectorAll('.stars li');
     for (star of starList) {
         star.style.display = 'inline';
