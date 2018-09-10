@@ -1,5 +1,7 @@
-/*referencing the deck class*/
+/*variables related to the cards and deck*/
 let deck = document.querySelector('.deck');
+const allCards = document.querySelectorAll('.card')
+let newDeck;
 
 let symbols = ["fa fa-diamond",
 "fa fa-paper-plane-o",
@@ -18,37 +20,49 @@ let symbols = ["fa fa-diamond",
 "fa fa-paper-plane-o",
 "fa fa-cube"];
 
+/*an array that was created for (clicked open) open cards and its associated variables*/
+let openCards = []; 
+let firstCard;
+let secondCard;
+
+/*an array that was created for matched cards*/
+let matchCards = [];
+
+/*variables for time related functions*/
 let clockOff = true;
 let time = 0;
+let timeStamp;
+
+
+/*variables related to matching cards/counter*/
 let matchCounter = 0;
 const matchPairs = 8;
-/*
-let endTime = new Date().getTime();
-*/
-let timeStamp;
-/*
- * Create a list that holds all of your cards
- * Grab all the cards
- */
-const allCards = document.querySelectorAll('.card')
 
-let newDeck;
+/*variables related to the moves function*/
+
+let moves = 0;
+const movesNumber = document.querySelector('.moves');
+
+/*variable for stars*/
+const starSymbol = '<li><i class="fa fa-star"></i></li>';
+let starScore = document.querySelector('.stars');
+
+/*functions that start the board*/
+
 shuffleCards();
 createBoard();
 
-/*shuffling the cards*/
+/*function that shuffles the cards*/
 function shuffleCards(){
 newDeck = shuffle(symbols);
 }
 
-/*restarting the game*/
+/*restarting the game - old versions - testing*/
 function replayGame(){
     document.location.reload();
     matchCards=[];
     openCards=[];
 }
-
-
 
 
 /*function that creates the board*/
@@ -64,21 +78,7 @@ newDeck.forEach(function(element) {
     });
 }
 
-
-
-/*an array that was created for matched cards*/
-let matchCards = [];
-
-/*an array that was created for open cards*/
-let openCards = []; 
-
-let firstCard;
-let secondCard;
-
-let starScore = document.querySelector('.stars');
-
-
-
+/*card.classList.remove('open', 'show', 'unclickable'); removes classes from previous board*/
 
 
 /*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)
@@ -92,9 +92,9 @@ for (let singleCard of allCards) {
 
 
 const reload = document.querySelector('.restart');
-reload.addEventListener('click', replayGame);
+reload.addEventListener('click', newReplay);
 
-var startTime = new Date().getTime();
+
 
 deck.addEventListener('click', event => {
     const onClick = event.target;
@@ -149,12 +149,6 @@ function checkMatch () {
     }
 }
 
-/*when all the cards are matchCards*/
-
-
-    /*endGame();*/
-
-
 
 /*this function flips the card back - face down*/
 function flipCardBack(){
@@ -168,7 +162,7 @@ firstCard.classList.add('unclickable');
 secondCard.classList.add('unclickable');
 }
 
-/*this function flips the cards*/
+/*this function flips the cards - face open*/
 function flipCard(onClick) {
     onClick.classList.toggle('open');
     onClick.classList.toggle('show');
@@ -187,7 +181,6 @@ function endTime(){
 }
 
 
-let starSymbol = '<li><i class="fa fa-star"></i></li>';
 
 
 
@@ -217,17 +210,19 @@ function endGame() {
     showModalStats();
 }
 
+/*
 function shuffleDeck() {
     const mixedCards = document.querySelectorAll('.deck li');
     console.log(mixedCards);
     shuffle(mixedCards)
 
 }
+*/
+
+
+
 
 /*this function increments moves each time it runs*/
-
-let moves = 0;
-const movesNumber = document.querySelector('.moves');
 function checkMoves(){
 moves++;
 movesNumber.innerHTML = moves;
@@ -276,9 +271,7 @@ function shuffle(array) {
 
 
 
-/*more info for modal
-let timer = endTime - startTime;
-*/
+
 
 /*shows time in HTML*/
 function showTime() {
@@ -314,10 +307,47 @@ function hideModal(){
     document.getElementById("modal").style.display = "none";
 }
 
-/*event listener for replay button*/
+/*event listener for replay button old way*/
 const modalReplayBtn = document.querySelector('.modal_replay');
 modalReplayBtn.addEventListener('click', replayGame);
 
+
+
+/*functions that resets the game*/
+
+function newReplay(){
+      resetTime();
+      resetMoves();
+      resetStars();
+      deck.innerHTML="";
+      shuffleCards();
+      createBoard();
+     
+}
+
+
+
+
+function resetTime(){
+    endTime();
+    time=0;
+    clockOff=true;
+    showTime();
+}
+
+function resetMoves(){
+    moves = 0;
+    document.querySelector('.moves').innerHTML = moves;
+}
+
+function resetStars(){
+    stars=0;
+    const starList = document.querySelectorAll('.stars li');
+    for (star of starList) {
+        star.style.display = 'inline';
+    }
+    
+}
 
 
 
