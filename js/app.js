@@ -25,30 +25,26 @@ let openCards = [];
 let firstCard;
 let secondCard;
 
-/*an array that was created for matched cards*/
+/*an array that was created for matched cards and variables associated with matching
+cards/counter*/
 let matchCards = [];
+let matchCounter = 0;
+const matchPairs = 8;
 
 /*variables for time related functions*/
 let clockOff = true;
 let time = 0;
 let timeStamp;
 
-
-/*variables related to matching cards/counter*/
-let matchCounter = 0;
-const matchPairs = 8;
-
 /*variables related to the moves function*/
-
 let moves = 0;
 const movesNumber = document.querySelector('.moves');
 
-/*variable for stars*/
+/*variables for stars function*/
 const starSymbol = '<li><i class="fa fa-star"></i></li>';
 let starScore = document.querySelector('.stars');
 
-/*functions that start the board*/
-
+/*Calling the shuffle cards and creating the board*/
 shuffleCards();
 createBoard();
 
@@ -56,14 +52,6 @@ createBoard();
 function shuffleCards(){
 newDeck = shuffle(symbols);
 }
-
-/*restarting the game - old versions - testing
-function replayGame(){
-    document.location.reload();
-    matchCards=[];
-    openCards=[];
-}*/
-
 
 /*function that creates the board*/
 function createBoard(){
@@ -78,24 +66,8 @@ newDeck.forEach(function(element) {
     });
 }
 
-/*card.classList.remove('open', 'show', 'unclickable'); removes classes from previous board*/
 
-
-/*the list allCards, runs through a loop, on click, card opens and shows (via toggling method)
-for (let singleCard of allCards) {
-    singleCard.addEventListener('click', () => {
-        singleCard.classList.toggle('show');
-        singleCard.classList.toggle('open');
-    });
-}
-*/
-
-
-const reload = document.querySelector('.restart');
-reload.addEventListener('click', replayGame);
-
-
-
+/*steps that occur when a card is click*/
 deck.addEventListener('click', event => {
     const onClick = event.target;
     if (onClick.classList.contains('card')) {
@@ -114,6 +86,12 @@ deck.addEventListener('click', event => {
     }
 });
 
+/*event listeners for restart feature on the board*/
+const reload = document.querySelector('.restart');
+reload.addEventListener('click', replayGame);
+
+
+
 /*this function pushes the open card into an array*/
 function openCardGroup(onClick) {
     openCards.push(onClick);
@@ -122,9 +100,7 @@ function openCardGroup(onClick) {
 
 /*if two cards are open/show, then test to see if they match*, if they match freeze cards and then 
 push them in matchCards array*/
-
 function checkMatch () {
-    
     firstCard = openCards[0];
     secondCard = openCards[1];
     if (firstCard.firstElementChild.className === secondCard.firstElementChild.className)
@@ -331,6 +307,7 @@ function replayGame(){
 function resetArrays(){
 matchCards=[];
 openCards=[];
+matchCounter = 0;
 }
 
 
