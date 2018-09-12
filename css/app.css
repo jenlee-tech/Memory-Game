@@ -33,9 +33,7 @@ h1 {
     font-weight: 300;
 }
 
-/*
- * Styles for the deck of cards
- */
+/*Styles for the deck of cards*/
 
 .deck {
     width: 660px;
@@ -85,9 +83,7 @@ h1 {
     pointer-events: none;
 }
 
-/*
- * Styles for the Score Panel
- */
+/*Styles for the Score Panel*/
 
 .score-panel {
     text-align: left;
@@ -114,9 +110,9 @@ h1 {
     cursor: pointer;
 }
 
+
 /*Styles for Modal*/
 #modal {
-    
     display: none;
     position: absolute;
     top: 0;
@@ -125,9 +121,6 @@ h1 {
     height: 150%;
     width: 100%;
     background: rgba(0, 0, 0, 0.438);
-    /*box-shadow: -11px -7px 28px -3px rgba(0,0,0,0.75);
-    opacity: .47;*/
-   
 }
 
 .modal-content {
@@ -135,20 +128,15 @@ h1 {
     background: #FFFF;
     top: 50%;
     left: 50%;
-    /*padding: 20px;*/
     width: 400px;
-    /*height: 400px;*/
     transform: translate(-50%, -70%);
     box-shadow: -11px -7px 28px -3px rgba(0,0,0,0.75);
-    /*opacity: .47;*/
-    
 }
 
 .closeBtn{
     color:#cccccc;
     font-weight: bold;
     font-size: 2rem;
-
 }
 
 .modal_heading{

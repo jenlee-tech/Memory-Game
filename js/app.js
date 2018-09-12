@@ -20,7 +20,7 @@ let symbols = ["fa fa-diamond",
 "fa fa-paper-plane-o",
 "fa fa-cube"];
 
-/*an array that was created for (clicked open) open cards and its associated variables*/
+/*an array that was created for (clicked to show) open cards and its associated variables*/
 let openCards = []; 
 let firstCard;
 let secondCard;
@@ -44,30 +44,34 @@ const movesNumber = document.querySelector('.moves');
 const starSymbol = '<li><i class="fa fa-star"></i></li>';
 let starScore = document.querySelector('.stars');
 
-/*Calling the shuffle cards and creating the board*/
-shuffleCards();
-createBoard();
 
-/*function that shuffles the cards*/
-function shuffleCards(){
-newDeck = shuffle(symbols);
+/*variables for modal feature and other functions*/
+let showTimeStat = document.querySelector('.modal_time');
+let showStarStat = document.querySelector('.modal_stars');
+let showMoveStat = document.querySelector('.modal_moves');
+
+/*event listeners for restart feature on the board*/
+const reload = document.querySelector('.restart');
+reload.addEventListener('click', replayGame);
+
+/*event listener to hide the modal*/
+function hideModal(){
+    document.getElementById("modal").style.display = "none";
 }
 
-/*function that creates the board*/
-function createBoard(){
-newDeck.forEach(function(element) {
-    let card = document.createElement("li");
-    card.classList.add('card');
-    let iclass='<i class =' + '"' + element + '"'+ '></i>';
-    card.innerHTML=iclass;
-    console.log(element);
-    console.log(card);
-    deck.appendChild(card);
-    });
-}
+/*event listener for cancel button and exit feature*/
+const modalCancelBtn = document.querySelector('.modal_cancel');
+modalCancelBtn.addEventListener('click', hideModal);
+
+const modalExitBtn = document.querySelector('.closeBtn');
+modalExitBtn.addEventListener('click', hideModal);
 
 
-/*steps that occur when a card is click*/
+/*event listener for replay button*/
+const modalReplayBtn = document.querySelector('.modal_replay');
+modalReplayBtn.addEventListener('click', replayGame);
+
+/*Event listener when a card is clicked*/
 deck.addEventListener('click', event => {
     const onClick = event.target;
     if (onClick.classList.contains('card')) {
@@ -78,7 +82,7 @@ deck.addEventListener('click', event => {
       flipCard(onClick);
       openCardGroup(onClick);
         if (openCards.length === 2) {
-            console.log("I have two cards")
+            console.log("I have two cards");
             checkMatch();
             checkMoves();
             starBoard();
@@ -86,11 +90,44 @@ deck.addEventListener('click', event => {
     }
 });
 
-/*event listeners for restart feature on the board*/
-const reload = document.querySelector('.restart');
-reload.addEventListener('click', replayGame);
+
+/*CALLING THE FUNCTIONS TO SHUFFLE CARDS AND CREATE BOARD*/
+shuffleCards();
+createBoard();
 
 
+/*function that shuffles the cards*/
+function shuffleCards(){
+newDeck = shuffle(symbols);
+}
+
+//*A Shuffle function from http://stackoverflow.com/a/2450976 */
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+
+/*function that creates the board*/
+function createBoard(){
+    newDeck.forEach(function(element) {
+        let card = document.createElement("li");
+        card.classList.add('card');
+        let iclass='<i class =' + '"' + element + '"'+ '></i>';
+        card.innerHTML=iclass;
+        console.log(element);
+        console.log(card);
+        deck.appendChild(card);
+    });
+}
 
 /*this function pushes the open card into an array*/
 function openCardGroup(onClick) {
@@ -98,20 +135,19 @@ function openCardGroup(onClick) {
     console.log(openCards);
 }
 
-/*if two cards are open/show, then test to see if they match*, if they match freeze cards and then 
+/*this function test if the open cards; if they match, freeze cards and then 
 push them in matchCards array*/
 function checkMatch () {
     firstCard = openCards[0];
     secondCard = openCards[1];
     if (firstCard.firstElementChild.className === secondCard.firstElementChild.className)
-            {
-            freezeCards();
-            console.log("dude, I match!");
-            matchCards.push(firstCard, secondCard);
-            openCards=[];
-            matchCounter++;
+        {
+        freezeCards();
+        console.log("dude, I match!");
+        matchCards.push(firstCard, secondCard);
+        openCards=[];
+        matchCounter++;
             if (matchCounter === matchPairs) {
-
                 console.log("I matched all the cards!");
                 endGame();
             }
@@ -125,17 +161,16 @@ function checkMatch () {
     }
 }
 
-
 /*this function flips the card back - face down*/
 function flipCardBack(){
     firstCard.classList.remove('open', 'show');
     secondCard.classList.remove('open', 'show');
 }
 
-/*this freeze cards*/
+/*this function freezes cards*/
 function freezeCards(){
-firstCard.classList.add('unclickable');
-secondCard.classList.add('unclickable');
+    firstCard.classList.add('unclickable');
+    secondCard.classList.add('unclickable');
 }
 
 /*this function flips the cards - face open*/
@@ -144,153 +179,70 @@ function flipCard(onClick) {
     onClick.classList.toggle('show');
 }
 
+/*this function starts time and calls the showTime function*/
 function initTime(){
-        timeStamp = setInterval(function(){
+    timeStamp = setInterval(function(){
         time++;
         console.log(time);
         showTime();
-    }, 1000);
+        }, 1000);
 }
 
+/*this function shows time in the HTML (clock and modal)*/
+function showTime() {
+    const clock = document.querySelector ('.clock');
+    console.log(clock);
+    clock.innerHTML= " and " + time + " seconds";
+    showTimeStat.innerHTML="Time = " + time + " seconds";
+    }
+
+/*this function stops the time*/    
 function endTime(){
     clearInterval(timeStamp);
 }
 
+/*this function increments moves each time it runs*/
+function checkMoves(){
+    moves++;
+    movesNumber.innerHTML = moves;
+    showMoveStat.innerHTML = "Moves =" + moves;
+}
 
 
-
-
-
+/*this function shows the stars in the HTML*/
 function starBoard () {
-switch(true) {
-    case moves <= 10:
-    starScore.innerHTML= starSymbol + starSymbol + starSymbol;
+    switch(true) {
+        case moves <= 20:
+        starScore.innerHTML= starSymbol + starSymbol + starSymbol;
+        showStarStat.innerHTML="Stars = " + starScore.innerHTML;
+        break;
+
+        case (moves > 20  && moves <= 40):
+        starScore.innerHTML=starSymbol + starSymbol;
+        showStarStat.innerHTML="Stars = " + starScore.innerHTML;
+        break;
     
-    break;
+        case (moves > 40):
+        starScore.innerHTML=starSymbol;
+        showStarStat.innerHTML="Stars = " + starScore.innerHTML;
+        break;
+    }
+}
 
-    case (moves > 10  && moves <= 30):
-    starScore.innerHTML=starSymbol + starSymbol;
-   
-    break;
-
-    case (moves > 30):
-    starScore.innerHTML=starSymbol;
-    break;
-
-    
-}}
-
+/*function that ends the game by calling other functions*/
 function endGame() {
     endTime();
     showModal();
-    showModalStats();
 }
 
-/*
-function shuffleDeck() {
-    const mixedCards = document.querySelectorAll('.deck li');
-    console.log(mixedCards);
-    shuffle(mixedCards)
-
-}
-*/
-
-
-
-
-/*this function increments moves each time it runs*/
-function checkMoves(){
-moves++;
-movesNumber.innerHTML = moves;
-}
-
-
-
-/*this function flips card back
-function flipCardBack(firstCard, secondCard) {
-    
-}
-*/
-
-
-
-
-
-
-/*push open cards in an array (openCards)*/
-function addCards (singleCard) {
-    openCards.push(singleCard);
-} 
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-
-
-
-
-/*shows time in HTML*/
-function showTime() {
-const clock = document.querySelector ('.clock');
-console.log(clock);
-clock.innerHTML= " and " + time + " seconds";
-}
-
+/*this function shows the modal by modifying the style*/
 function showModal(){
     document.getElementById("modal").style.display = "block";
-    
 }
 
-/*places the stats on the modal*/
-function showModalStats(){
-const showTimeStat = document.querySelector('.modal_time');
-const showStarStat = document.querySelector('.modal_stars');
-const showMoveStat = document.querySelector('.modal_moves');
+/*FUNCTIONS THAT RESETS THE GAME*/
 
-showTimeStat.innerHTML="Time = " + time + " seconds";
-showStarStat.innerHTML="Stars = " + starScore.innerHTML;
-showMoveStat.innerHTML="Moves = " + moves;
-}
-
-/*event listener for cancel button and exit feature*/
-const modalCancelBtn = document.querySelector('.modal_cancel');
-modalCancelBtn.addEventListener('click', hideModal);
-
-const modalExitBtn = document.querySelector('.closeBtn');
-modalExitBtn.addEventListener('click', hideModal);
-
-function hideModal(){
-    document.getElementById("modal").style.display = "none";
-}
-
-
-const modalReplayBtn = document.querySelector('.modal_replay');
-modalReplayBtn.addEventListener('click', replayGame);
-
-
-
-/*functions that resets the game*/
-
+/*function that calls other functions to replay the game*/
 function replayGame(){
       resetTime();
       resetMoves();
@@ -300,17 +252,16 @@ function replayGame(){
       hideModal();
       shuffleCards();
       createBoard();
-
-     
 }
 
+/*function tha resets the arrays and matchCounter*/
 function resetArrays(){
-matchCards=[];
-openCards=[];
-matchCounter = 0;
+    matchCards=[];
+    openCards=[];
+    matchCounter = 0;
 }
 
-
+/*function at resets and ends the time*/
 function resetTime(){
     endTime();
     time=0;
@@ -318,11 +269,14 @@ function resetTime(){
     showTime();
 }
 
+/*function that resets the moves*/
 function resetMoves(){
     moves = 0;
-    document.querySelector('.moves').innerHTML = moves;
+    movesNumber.innerHTML = moves;
+    showMoveStat.innerHTML = "Moves =" + moves;
 }
 
+/*function that resets the stars and styles it*/
 function resetStars(){
     stars=0;
     starScore.innerHTML= starSymbol + starSymbol + starSymbol;
@@ -330,18 +284,4 @@ function resetStars(){
     for (star of starList) {
         star.style.display = 'inline';
     }
-    
 }
-
-
-
-/* This is Udacity's instructions
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */

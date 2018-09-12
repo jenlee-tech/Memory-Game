@@ -1,20 +1,13 @@
-# Memory Game Project
+First interactive game by Jennifer Lee - Memory Game Project 
 
-## Table of Contents
+This project has really stretched me in understanding all the concepts that I have learned so far with Udacity.  Despite how difficult it was, it help solidify my understanding in how Javascript, HTML and CSS work together. For this I am very thankful and proud. 
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+I want to thank the following people that provide concepts and insights in helping me complete the Memory Game project:
 
-## Instructions
+Yahya Elharony youtube video on the Memory Game Project:
+https://www.youtube.com/watch?v=G8J13lmApkQ&t=5s
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Matthew Cranford - on the Memory Game WalkThrough:
+https://matthewcranford.com/memory-game-walkthrough-part-1-setup/
 
-To get started, open `js/app.js` and start building out the app's functionality
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
