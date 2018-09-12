@@ -1,4 +1,4 @@
-#First interactive game by Jennifer Lee - Memory Game Project 
+# First interactive game by Jennifer Lee - Memory Game Project 
 
 #How to play:
 The game will start when you first click on a card. On the top left, there is a timer (which will show in seconds), a starboard and moves counter.  On the top right, there is a replay button. When two cards are flipped, its considered one move.  If these two cards do not match, it will flipped back over.  If they do match, they will remain open.  When all the cards are matched, there will be a Stats board that will show you the number of moves, the timer and your star rating.
