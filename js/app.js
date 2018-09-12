@@ -74,7 +74,7 @@ modalReplayBtn.addEventListener('click', replayGame);
 /*Event listener when a card is clicked*/
 deck.addEventListener('click', event => {
     const onClick = event.target;
-    if (onClick.classList.contains('card')) {
+    if (onClick.classList.contains('card') && openCards.length < 2) {
         if (clockOff) {
             initTime();
             clockOff=false;
@@ -156,7 +156,7 @@ function checkMatch () {
     {
         console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
         array */
-        setTimeout(flipCardBack, 1500);
+        setTimeout(flipCardBack, 1000);
         openCards=[];
     }
 }
@@ -175,8 +175,7 @@ function freezeCards(){
 
 /*this function flips the cards - face open*/
 function flipCard(onClick) {
-    onClick.classList.toggle('open');
-    onClick.classList.toggle('show');
+    onClick.classList.add('open', 'show');
 }
 
 /*this function starts time and calls the showTime function*/
