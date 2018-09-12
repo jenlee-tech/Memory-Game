@@ -91,7 +91,7 @@ deck.addEventListener('click', event => {
 });
 
 
-/*CALLING THE FUNCTIONS TO SHUFFLE CARDS AND CREATE BOARD*/
+/*CALLING THE FUNCTIONS THAT SHUFFLE CARDS AND CREATES THE BOARD*/
 shuffleCards();
 createBoard();
 
