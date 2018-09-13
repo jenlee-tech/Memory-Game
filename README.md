@@ -14,11 +14,7 @@ On the top of the Memory Game board, the Stats are also shown as you progress th
 
 * access to [Font-Awesome:](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
 
-[License:](https://fontawesome.com/license)
-
 * access to [Google Fonts - Coda family:](https://fonts.googleapis.com/css?family=Coda)
-
-[License:](https://fonts.google.com/attribution)
 
 * Your nostalgia for childhood games.  :stuck_out_tongue_winking_eye:
 
@@ -55,4 +51,8 @@ This project has really stretched me in understanding all the concepts that I ha
 
 
 ## License
-_This project was built on perserverance_ Copyright &copy; 2018 Jennifer Lee
+* [License:](https://fontawesome.com/license) for Font Awesome.
+
+* [License:](https://fonts.google.com/attribution) for Google Fonts
+
+* _This project was built on perserverance and a growing love._  Copyright &copy; 2018 Jennifer Lee
