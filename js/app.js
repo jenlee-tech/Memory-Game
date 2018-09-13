@@ -8,17 +8,11 @@ let symbols = ["fa fa-diamond",
 "fa fa-anchor", 
 "fa fa-bolt",
 "fa fa-cube",
-"fa fa-anchor",
 "fa fa-leaf",
 "fa fa-bicycle",
-"fa fa-diamond",
-"fa fa-bomb",
-"fa fa-leaf",
-"fa fa-bomb",
-"fa fa-bolt",
-"fa fa-bicycle",
-"fa fa-paper-plane-o",
-"fa fa-cube"];
+"fa fa-bomb"];
+
+let moreSymbols = symbols.concat(symbols); /*doubling the symbols to prevent typo errors*/
 
 /*an array that was created for (clicked to show) open cards and its associated variables*/
 let openCards = []; 
@@ -98,7 +92,7 @@ createBoard();
 
 /*function that shuffles the cards*/
 function shuffleCards(){
-newDeck = shuffle(symbols);
+newDeck = shuffle(moreSymbols);
 }
 
 //*A Shuffle function from http://stackoverflow.com/a/2450976 */
@@ -142,11 +136,12 @@ function checkMatch () {
     secondCard = openCards[1];
     if (firstCard.firstElementChild.className === secondCard.firstElementChild.className)
         {
-        freezeCards();
+        /*freezeCards();*/
+        matchCardStyle();
         console.log("dude, I match!");
         matchCards.push(firstCard, secondCard);
-        openCards=[];
         matchCounter++;
+        openCards=[];
             if (matchCounter === matchPairs) {
                 console.log("I matched all the cards!");
                 endGame();
@@ -156,26 +151,35 @@ function checkMatch () {
     {
         console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
         array */
-        setTimeout(flipCardBack, 1000);
-        openCards=[];
+        flipCardsBack();
+       
     }
 }
 
-/*this function flips the card back - face down*/
-function flipCardBack(){
-    firstCard.classList.remove('open', 'show');
-    secondCard.classList.remove('open', 'show');
+function matchCardStyle(){
+    firstCard.classList.add('match');
+    secondCard.classList.add('match');
 }
+/*this function flips the cards back - face down with a time delay*/
+function flipCardsBack(){
+        setTimeout(function() {
+            firstCard.classList.remove('open', 'show', 'unclickable');
+            secondCard.classList.remove('open', 'show', 'unclickable');
+            openCards=[];
+            }, 1000);
+        }
 
-/*this function freezes cards*/
+
+
+/*this function freezes cards
 function freezeCards(){
     firstCard.classList.add('unclickable');
     secondCard.classList.add('unclickable');
-}
+}*/
 
 /*this function flips the cards - face open*/
 function flipCard(onClick) {
-    onClick.classList.add('open', 'show');
+    onClick.classList.add('open', 'show','unclickable');
 }
 
 /*this function starts time and calls the showTime function*/
