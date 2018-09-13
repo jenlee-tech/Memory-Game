@@ -12,11 +12,13 @@ On the top of the Memory Game board, the Stats are also shown as you progress th
 ## Prerequisites/Dependencies
 * A modern day web browser with Javascript enabled.
 
-* access to [Font-Awesome:]("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
+* access to [Font-Awesome:](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
+
 [License:](https://fontawesome.com/license)
 
 * access to [Google Fonts - Coda family:](https://fonts.googleapis.com/css?family=Coda)
-[License:](https://fonts.google.com/attribution) (Open Font License)
+
+[License:](https://fonts.google.com/attribution)
 
 * Your nostalgia for childhood games.  :stuck_out_tongue_winking_eye:
 
