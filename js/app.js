@@ -166,7 +166,7 @@ function flipCardsBack(){
             firstCard.classList.remove('open', 'show', 'unclickable');
             secondCard.classList.remove('open', 'show', 'unclickable');
             openCards=[];
-            }, 1000);
+            }, 500);
         }
 
 
