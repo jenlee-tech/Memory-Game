@@ -14,13 +14,15 @@ let symbols = ["fa fa-diamond",
 
 let moreSymbols = symbols.concat(symbols); /*doubling the symbols to prevent typo errors*/
 
-/*an array that was created for (clicked to show) open cards and its associated variables*/
+/**an array that was created for (clicked to show) open cards and its associated 
+ * variables
+ * */
 let openCards = []; 
 let firstCard;
 let secondCard;
 
-/*an array that was created for matched cards and variables associated with matching
-cards/counter*/
+/**an array that was created for matched cards and variables associated 
+ * with matching cards and counter*/
 let matchCards = [];
 let matchCounter = 0;
 const matchPairs = 8;
@@ -61,11 +63,12 @@ const modalExitBtn = document.querySelector('.closeBtn');
 modalExitBtn.addEventListener('click', hideModal);
 
 
+
 /*event listener for replay button*/
 const modalReplayBtn = document.querySelector('.modal_replay');
 modalReplayBtn.addEventListener('click', replayGame);
 
-/*Event listener when a card is clicked*/
+/*event listener when a card is clicked*/
 deck.addEventListener('click', event => {
     const onClick = event.target;
     if (onClick.classList.contains('card') && openCards.length < 2) {
@@ -73,10 +76,9 @@ deck.addEventListener('click', event => {
             initTime();
             clockOff=false;
         }
-      flipCard(onClick);
-      openCardGroup(onClick);
+        flipCard(onClick);
+        openCardGroup(onClick);
         if (openCards.length === 2) {
-            console.log("I have two cards");
             checkMatch();
             checkMoves();
             starBoard();
@@ -85,7 +87,7 @@ deck.addEventListener('click', event => {
 });
 
 
-/*CALLING THE FUNCTIONS THAT SHUFFLE CARDS AND CREATES THE BOARD*/
+/*CALLING THE FUNCTIONS THAT SHUFFLES CARDS AND CREATES THE BOARD*/
 shuffleCards();
 createBoard();
 
@@ -94,6 +96,7 @@ createBoard();
 function shuffleCards(){
 newDeck = shuffle(moreSymbols);
 }
+
 
 //*A Shuffle function from http://stackoverflow.com/a/2450976 */
 function shuffle(array) {
@@ -117,49 +120,50 @@ function createBoard(){
         card.classList.add('card');
         let iclass='<i class =' + '"' + element + '"'+ '></i>';
         card.innerHTML=iclass;
-        console.log(element);
-        console.log(card);
         deck.appendChild(card);
     });
 }
 
+
 /*this function pushes the open card into an array*/
 function openCardGroup(onClick) {
     openCards.push(onClick);
-    console.log(openCards);
 }
 
-/*this function test if the open cards; if they match, freeze cards and then 
-push them in matchCards array*/
-function checkMatch () {
+
+/**
+ * @function
+ * this function test if the open cards; if they match, freeze cards and
+ * then push them in matchCards array
+*/
+function checkMatch(){
     firstCard = openCards[0];
     secondCard = openCards[1];
     if (firstCard.firstElementChild.className === secondCard.firstElementChild.className)
         {
-        /*freezeCards();*/
         matchCardStyle();
-        console.log("dude, I match!");
         matchCards.push(firstCard, secondCard);
         matchCounter++;
         openCards=[];
             if (matchCounter === matchPairs) {
-                console.log("I matched all the cards!");
                 endGame();
             }
-    }
+        }
     else 
     {
-        console.log("I don't match"); /*if they don't match, then flip cards back and empty out openCards
-        array */
+        /*if they don't match, flipCardsBack function is called*/
         flipCardsBack();
-       
     }
 }
 
+
+/*this function changes the style of matched cards*/
 function matchCardStyle(){
     firstCard.classList.add('match');
     secondCard.classList.add('match');
 }
+
+
 /*this function flips the cards back - face down with a time delay*/
 function flipCardsBack(){
         setTimeout(function() {
@@ -170,39 +174,34 @@ function flipCardsBack(){
         }
 
 
-
-/*this function freezes cards
-function freezeCards(){
-    firstCard.classList.add('unclickable');
-    secondCard.classList.add('unclickable');
-}*/
-
 /*this function flips the cards - face open*/
-function flipCard(onClick) {
+function flipCard(onClick){
     onClick.classList.add('open', 'show','unclickable');
 }
+
 
 /*this function starts time and calls the showTime function*/
 function initTime(){
     timeStamp = setInterval(function(){
         time++;
-        console.log(time);
         showTime();
         }, 1000);
 }
 
+
 /*this function shows time in the HTML (clock and modal)*/
-function showTime() {
+function showTime(){
     const clock = document.querySelector ('.clock');
-    console.log(clock);
     clock.innerHTML= " and " + time + " seconds";
     showTimeStat.innerHTML="Time = " + time + " seconds";
     }
+
 
 /*this function stops the time*/    
 function endTime(){
     clearInterval(timeStamp);
 }
+
 
 /*this function increments moves each time it runs*/
 function checkMoves(){
@@ -213,7 +212,7 @@ function checkMoves(){
 
 
 /*this function shows the stars in the HTML*/
-function starBoard () {
+function starBoard(){
     switch(true) {
         case moves <= 20:
         starScore.innerHTML= starSymbol + starSymbol + starSymbol;
@@ -232,20 +231,24 @@ function starBoard () {
     }
 }
 
-/*function that ends the game by calling other functions*/
-function endGame() {
+
+/*this function ends the game by calling other functions*/
+function endGame(){
     endTime();
     showModal();
 }
+
 
 /*this function shows the modal by modifying the style*/
 function showModal(){
     document.getElementById("modal").style.display = "block";
 }
 
-/*FUNCTIONS THAT RESETS THE GAME*/
 
-/*function that calls other functions to replay the game*/
+/*FUNCTIONS THAT RESET THE GAME*/
+
+
+/*this function calls other functions to replay the game*/
 function replayGame(){
       resetTime();
       resetMoves();
@@ -257,14 +260,16 @@ function replayGame(){
       createBoard();
 }
 
-/*function tha resets the arrays and matchCounter*/
+
+/*this function resets the arrays and matchCounter*/
 function resetArrays(){
     matchCards=[];
     openCards=[];
     matchCounter = 0;
 }
 
-/*function at resets and ends the time*/
+
+/*this function resets and ends the time*/
 function resetTime(){
     endTime();
     time=0;
@@ -272,14 +277,15 @@ function resetTime(){
     showTime();
 }
 
-/*function that resets the moves*/
+/*this function resets the moves*/
 function resetMoves(){
     moves = 0;
     movesNumber.innerHTML = moves;
     showMoveStat.innerHTML = "Moves =" + moves;
 }
 
-/*function that resets the stars and styles it*/
+
+/*this function resets the stars and styles it*/
 function resetStars(){
     stars=0;
     starScore.innerHTML= starSymbol + starSymbol + starSymbol;
