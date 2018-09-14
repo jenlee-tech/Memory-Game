@@ -9,7 +9,7 @@ On the top of the Memory Game board, the Stats are also shown as you progress th
 
 
 
-## Prerequisites/Dependencies
+## Prerequisites/Dependencies:
 * A modern day web browser with Javascript enabled.
 
 * access to [Font-Awesome:](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
@@ -50,8 +50,8 @@ I want to thank the following people\organizations that provided concepts and in
 This project has really stretched me in understanding all the concepts that I have learned so far with Udacity.  Despite how difficult it was, it help solidify my understanding on how Javascript, HTML and CSS work together. For this I am very thankful and proud. 
 
 
-## License
-* [License:](https://fontawesome.com/license) for Font Awesome.
+## License:
+* [License:](https://fontawesome.com/license) for Font Awesome
 
 * [License:](https://fonts.google.com/attribution) for Google Fonts
 
